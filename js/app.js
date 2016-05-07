@@ -5,7 +5,9 @@ var AppModel = angular
 	.module('ringstar', []);
 
 AppModel
-	.controller('confirmCtrl', [''])
+	.controller('confirmCtrl', ['$scope', '$http', '$location', function($scope, $http, $location){
+		
+	}])
 AppModel
 	.controller('ringstarCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) { 
  

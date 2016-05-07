@@ -13,31 +13,22 @@
 	<body ng-app="ringstar">
 
 	<div ng-controller="ringstarCtrl">
-		<input ng-model="searchQuery" type="text" /> <button ng-click="search()" >Search</button>
-
+		<input ng-model="searchQuery" type="text" /> <button ng-click="search()" >Search</button> 
 		<ul>
 			<li ng-repeat="eventItem in eventCollection">
 				<button ng-click="selectEvent(eventItem)">{{eventItem.id}}</button> {{eventItem.title}}
 			</li>
-		</ul>
-
-		<input ng-model="searchArtistQuery" type="text" /> <button ng-click="searchArtistConcert()" >Search</button>
-
+		</ul> 
+		<input ng-model="searchArtistQuery" type="text" /> <button ng-click="searchArtistConcert()" >Search</button> 
 		<ul>
 			<li ng-repeat="eventItem in eventCollection">
 				<button ng-click="selectEvent(eventItem)">{{eventItem.id}}</button> {{eventItem.title}}
 			</li>
-		</ul>
-
-		
-
+		</ul> 
 		<div ng-repeat="item in artistConcertCollection" ng-if="$first"> {{item}}
 
 		</div>
-	</div>
-
-	
-		 
+	</div> 
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="js/angular.min.js"></script> 

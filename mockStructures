@@ -1,0 +1,56 @@
+
+
+//Events
+{
+				id: item.id, (change this)
+				img: "https://images.sk-static.com/images/media/profile_images/venues/" + item.id + "/col2",
+				startDate: item.start.date,
+				cityName : item.location.city,
+				cityLatitud : item.location.lat,
+				cityLongitud: item.location.lng,
+				eventName : item.venue.displayName,
+				eventLatitud: item.venue.lat,
+				eventLongitud : item.venue.lng
+} 
+
+// Hotel -> HotelBeds ( booking )
+// Rome2Rio ->
+//Product EVENT/HOTEL/TRANSFER
+{
+
+	productType: "hotel" / "transfer"
+	id: 
+	img:
+	name:
+	description:
+	price: 
+	currency:
+	checkindate:
+	checkoutdate:
+}
+
+//Destination:
+{
+	name: 
+	description:
+	id:
+	img:
+}
+ 
+Booking.com
+username: hacker232
+password: fthriQ0ZWfs
+
+MusementApi
+thack.musement.com
+api@musement.com
+
+HotelBeds
+developer.hotelbeds.com
+plan_thackmallorca Hotel/Activities
+
+TaxiTime
+https://apidocs.taxitime.com
+https://sandbox.taxitime.com/api/v1
+
+
