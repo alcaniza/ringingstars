@@ -5,22 +5,22 @@ var AppModel = angular
 	.module('ringstar', []);
 
 AppModel
-	.controller('ringstarCtrl', ['$scope', '$http', function($scope, $http) { 
+	.controller('ringstarCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) { 
  
-	$scope.search = function(){
-		$scope.text = $scope.searchQuery;
-		$scope.getMusementEventByName($scope.searchQuery, onSearchEventSuccess, onSearchEventError);
-	}	
+
+ 	$scope.isLoading = false;
 
 	$scope.selectEvent = function(item){
 		$scope.getMusementEventInformation(item.id, onGetEventInformationSuccess, onGetEventInformationError);
 	};
 
 	$scope.searchArtistConcert = function(){
+		$scope.isLoading = true;
 		$scope.getMockArtistEvent($scope.searchArtistQuery, onSearchArtistConcertSuccess, onSearchArtistConcertError);
 	}; 
 
 	var onSearchArtistConcertSuccess = function(response){
+		$scope.isLoading = false;
 		$scope.artistConcertCollection = parseArtistConcert(response.data.resultsPage.results.event);
 	};
 
@@ -45,6 +45,7 @@ AppModel
 	}
 
 	var onSearchArtistConcertError = function(response){
+		$scope.isLoading = false;
 		$scope.artistConcertCollection = null;
 	};
 
@@ -95,6 +96,14 @@ AppModel
 		$http.get("mock/searchArtist.json").then(successCallback, errorCallback);
 	}
 
+
+	
+    $scope.init = function(){
+    	var query = $location.search().search; 
+    	$scope.searchArtistConcert();
+    }
+
+    $scope.init();
 		
 	}]);
 
