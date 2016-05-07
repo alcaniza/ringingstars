@@ -69,7 +69,7 @@
           </p>
           -->
           <div class="jumbotron" style="height:400px; background-image:url('img/defaultTrack.jpg');background-repeat:no-repeat;background-size:cover;background-position:center;">
-            <!--<h1>Your results</h1>-->
+            <h1>{{searchTerm}}</h1>
             <!--
             <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
             -->
@@ -84,17 +84,21 @@
       
       <!-- Three columns of text below the carousel -->
       <div class="row">
-        <div class="col-lg-4" ng-repeat="item in artistConcertCollection">
-          <img class="img-circle" src="img/eventDefault.png" alt="Generic placeholder image" width="140" height="140">
+        <div class="col-lg-4" style="padding:25px;" ng-repeat="item in artistConcertCollection">
+          <img class="img-circle" src="{{item.img}}" alt="Generic placeholder image" width="140" height="140">
           <h2>{{item.eventName}}</h2>
-          <p>{{item}}</p>
-          <p><a class="btn btn-default" href="#" role="button">Details</a>
-          <a class="btn btn-default" href="#" role="button"> Booking </a></p>
+          <p>{{item.startDate}} - {{item.id}}</p>
+          <!--<p><a class="btn btn-default" href="#" role="button">Details</a>-->
+          <a class="btn btn-default" href="#" onclick="bookEvent({{item.id}})" role="button"> Booking </a></p>
         </div><!-- /.col-lg-4 -->
          
       </div><!-- /.row -->
       
-    
+		<script>
+			fucntion bookEvent(id) {
+				window.location = '/player_detail?eventid=' + id;
+			}
+		</script>
           
       
 
