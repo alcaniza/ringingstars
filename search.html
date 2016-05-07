@@ -57,7 +57,7 @@
           <div class="inner cover">
             <h1 class="cover-heading title-letters">Ringing Stars</h1>
             
-            <form>
+            <form action="results.html" method="POST" id="form">
 					<div class="form-group">
 						<!--<label for="exampleInputEmail1">Email address</label>-->
 						<input type="text" class="form-control" id="searchInput" placeholder="Amazing concerts">
@@ -65,8 +65,13 @@
 				</form>
             
             <p class="lead">
-              <a href="#" class="btn btn-lg btn-default">Search</a>
+              <a href="#" onClick="yourFunction(); return false;" class="btn btn-lg btn-default">Search</a>
             </p>
+            <script>
+					function yourFunction() {
+						document.getElementById("form").submit();
+					}
+            </script>
           </div>
 
           <div class="mastfoot">
