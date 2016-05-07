@@ -5,6 +5,8 @@ var AppModel = angular
 	.module('ringstar', []);
 
 AppModel
+	.controller('confirmCtrl', [''])
+AppModel
 	.controller('ringstarCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) { 
  
 
@@ -24,12 +26,15 @@ AppModel
 		$scope.artistConcertCollection = parseArtistConcert(response.data.resultsPage.results.event);
 	};
 
+	//
 	var parseArtistConcert = function(data){
 
 		var results = [];
 
 		angular.forEach(data, function(item){
 			results.push({
+				id: item.id,
+				img: "https://images.sk-static.com/images/media/profile_images/venues/" + item.id + "/col2",
 				startDate: item.start.date,
 				cityName : item.location.city,
 				cityLatitud : item.location.lat,
@@ -95,11 +100,9 @@ AppModel
 	$scope.getMockArtistEvent = function(artistName, successCallback, errorCallback){
 		$http.get("mock/searchArtist.json").then(successCallback, errorCallback);
 	}
-
-
-	
+ 
     $scope.init = function(){
-    	var query = $location.search().search; 
+    	$scope.searchTerm = $location.search().search; 
     	$scope.searchArtistConcert();
     }
 
