@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	
+
+	<head>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	</head>
+
+	<body ng-app="ringstar">
+
+	<div ng-controller="ringstarCtrl">
+		<input ng-model="searchQuery" type="text" /> <button ng-click="search()" >Search</button>
+
+		<ul>
+			<li ng-repeat="eventItem in eventCollection">
+				<button ng-click="selectEvent(eventItem)">{{eventItem.id}}</button> {{eventItem.title}}
+			</li>
+		</ul>
+
+		<input ng-model="searchArtistQuery" type="text" /> <button ng-click="searchArtistConcert()" >Search</button>
+
+		<ul>
+			<li ng-repeat="eventItem in eventCollection">
+				<button ng-click="selectEvent(eventItem)">{{eventItem.id}}</button> {{eventItem.title}}
+			</li>
+		</ul>
+
+		
+
+		<div ng-repeat="item in artistConcertCollection" ng-if="$first"> {{item}}
+
+		</div>
+	</div>
+
+	
+		 
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="js/angular.min.js"></script> 
+		<script src="js/app.js"></script>
+	</body>
+</html>
+
+
+
