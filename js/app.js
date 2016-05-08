@@ -5,18 +5,14 @@ var AppModel = angular
  
 AppModel
 	.controller('confirmCtrl', ['$scope', '$http', '$location', function($scope, $http, $location){
-		
+				
 		$scope.init = function(){
+			console.log();
 			var eventId = getQueryString().eventid;
-			$scope.getEvent(eventId, 
-			function(response){
-			
-			}, 
-			function(response){
-
-			});
-
+			$scope.getSelectedEvent(eventId);
 		};
+
+		$scope.init();
 
 		$scope.getSelectedEvent = function(eventId){
 			//todo: remove this from here ok? :)
@@ -35,7 +31,7 @@ AppModel
 
 			});
 	
-		}
+		};
 
 		// Get Booking Availability
 		$scope.getBookingAvailability = function(latitud, longitud, checkInDate, checkOutDate){
