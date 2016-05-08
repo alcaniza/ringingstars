@@ -13,7 +13,8 @@ $rome = new RomeToRio("sqruI6jx");
 $request = new AvailabilityRequest();
 $request->Lat = "38.76988,-9.12824";
 $request->Lon = "40.49109,-3.59369";
-$rome->GetAvailability($request);
+echo $rome->GetAvailability($request);
+
 
 Class RomeToRio{
    
@@ -33,7 +34,21 @@ Class RomeToRio{
 			"&oPos=". $RQ->Lat .
 			"&dPos=" . $RQ->Lon; 
 
-		return file_get_contents($serviceUrl."?".$data);
+		 	$values =  json_decode(file_get_contents($serviceUrl."?".$data));
+		 	$route = $values->routes[0];
+		 	$product = new Product();
+	   		$product->productType = "transfer";
+		    $product->id = null; 
+		    $product->img = 0;
+		    $product->name = $route->name;
+		    $product->description = $route->stops;
+		    $product->price = $route->indicativePrice->price; 
+		    $product->currency = $route->indicativePrice->currency;
+		    $product->checkindate = 0;
+		    $product->checkoutdate = 0;
+		    $product->latitude = 0;
+		    $product->longitude = 0;	
+		    return json_encode($product);
 	} 
 
  

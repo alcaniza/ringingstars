@@ -5,8 +5,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once("function.php");
 
-
-
+/*
 
 	$booking = new Booking("hacker232", "fthriQ0ZWfs");
 	$rq = new AvailabilityRequest();
@@ -17,7 +16,8 @@ require_once("function.php");
 	$rq->Radius = 10;
 	echo $booking->GetAvailability($rq);
 
-
+*/
+	
 Class Booking{
    
 	var $api = null;
