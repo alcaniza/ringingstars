@@ -61,6 +61,39 @@
 						<!--<label for="exampleInputEmail1">Email address</label>-->
 						<input type="text" class="form-control" name="search" id="searchInput" placeholder="Amazing concerts">
 					</div>
+					
+					<div style="text-align:left;">
+						<a class="btn btn-invert collapsed" aria-controls="collapseExample" aria-expanded="false" href="#collapseExample" data-toggle="collapse">
+							<span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+						</a>
+						<div id="collapseExample" class="collapse" aria-expanded="true" style="">
+							<div class="form-group col-xs-4 col-sm-4" >
+								<label for="city">Where you are?</label>
+								<input type="text" class="form-control" name="city" id="city" placeholder="city">
+							</div>
+							<div class="form-group col-xs-4 col-sm-4">
+								<label for="hotelType">What kind of hotel</label>
+								<select  class="form-control" id="hotelType" name="hotelType">
+									<option>1 star</option>
+									<option>2 star</option>
+									<option selected>3 star</option>
+									<option>4 star</option>
+									<option>5 star</option>
+								</select>
+							</div>
+							<div class="form-group col-xs-4 col-sm-4">
+								<label for="transferType">What kind of transfer</label>
+								<select class="form-control" id="transferType" name="transferType">
+									<option selected>Random</option>
+									<option>Taxi</option>
+									<option>Shutle Bus</option>
+									<option>Limousine</option>
+									<option>Private</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					
 				</form>
             
             <p class="lead">

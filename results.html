@@ -68,8 +68,8 @@
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           -->
-          <div ng-if="false" class="jumbotron" style="height:400px; background-image:url('img/defaultTrack.jpg');background-repeat:no-repeat;background-size:cover;background-position:center;">
-            <h1>{{searchTerm}}</h1>
+          <div ng-if="true" class="jumbotron" style="height:400px; background-image:url('img/defaultTrack.jpg');background-repeat:no-repeat;background-size:cover;background-position:center;">
+            <h1 style="text-align:left;">{{searchTerm}}</h1>
             <!--
             <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
             -->
@@ -89,7 +89,7 @@
   
           <img class="img-circle" src="{{item.img}}" alt="{{item.eventName}}" width="140" height="140">
           <h4>{{item.eventName}}</h4>
-          <p>{{item.startDate}} - {{item.id}}</p>
+          <p>{{item.startDate}}</p>
           <!--<p><a class="btn btn-default" href="#" role="button">Details</a>-->
           <a class="btn btn-default" href="#" onclick="bookEvent(item)" role="button"> Booking </a></p>
         </div><!-- /.col-lg-4 -->
