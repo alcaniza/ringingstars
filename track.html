@@ -82,6 +82,7 @@
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
       </ol>
       
       <!-- event -->
@@ -96,12 +97,21 @@
           </div>
         </div>
         
-        <!-- repeat -->
         <div class="item">
           <img class="second-slide" src="{{booking.img}}" alt="Second slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>{{booking.name}}</h1>
+            </div>
+          </div>
+        </div>
+        
+        <div class="item">
+          <img class="second-slide" src="img/defaultFly.jpg" alt="Second slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <p>{{transfer.name}}</p>
+              <h1><span ng-repeat="item in transfer.description"> {{item.name}} </span></h1>
             </div>
           </div>
         </div>
@@ -158,10 +168,11 @@
 
       <div class="row featurette">
         <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          <h2 class="featurette-heading">{{transfer.name}}</h2>
+          <p class="lead">{{transfer.price}} {{transfer.currency}}</p>
+          <p class="" ng-repeat="item in transfer.description">{{item.name}}</p>
         </div>
-        <div class="col-md-5 col-md-pull-7 test-image" style="height:500px; background-image:url('img/defaultTrack.jpg');">
+        <div class="col-md-5 col-md-pull-7 test-image" style="height:500px; background-image:url('img/defaultFly.jpg');">
         </div>
       </div>
 
