@@ -9,6 +9,21 @@ Class AvailabilityRequest{
     var $Radius;
 }
 
+
+Class Product{
+    var $productType;
+    var $id; 
+    var $img;
+    var $name;
+    var $description;
+    var $price; 
+    var $currency;
+    var $checkindate;
+    var $checkoutdate;
+
+    var $latitude;
+    var $longitude;
+}
 // Method: POST, PUT, GET etc
 // Data: array("param" => "value") ==> index.php?param=value
 Class Api{
@@ -44,7 +59,11 @@ Class Api{
         }
 
         curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_USERPWD, $credential);
+        
+        if($this->_password!=null){
+            curl_setopt($curl, CURLOPT_USERPWD, $credential);            
+        }
+
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);

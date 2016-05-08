@@ -7,6 +7,15 @@ $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 
 switch($request->partner){
+	case "rome2rio":
+		$rome = new RomeToRio("sqruI6jx");
+		switch($request->action){
+			case "getAvailability": 
+				$response = $rome->GetHotelImage($request->data->availabilityRQ);
+				$responseJSON = json_encode($response);
+			break;
+		}
+	break;
 	case "booking":
 		
 		$booking = new Booking("hacker232", "fthriQ0ZWfs");
