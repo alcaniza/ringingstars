@@ -28,7 +28,6 @@ AppModel
 
 				if(selectedEvent.length > 0){
 					var selectedEvent = event[0];
-
 				}
 				
 			}, 
@@ -111,8 +110,8 @@ AppModel
 		$scope.getMusementEventByName($scope.searchTerm, 
 		function(response){
 			searchCompleted($scope);
-			var result = parseMusementEvent(response.data.resultsPage.results.event);
-			angular.extend($scope.artistConcertCollection, result);
+			//var result = parseMusementEvent(response.data.resultsPage.results.event);
+			//angular.extend($scope.artistConcertCollection, result);
 		}, 
 		function(response){
 			searchCompleted($scope);
