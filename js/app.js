@@ -5,8 +5,9 @@ var AppModel = angular
  
 AppModel
 	.controller('confirmCtrl', ['$scope', '$http', '$location', function($scope, $http, $location){
-				
+			
 
+		$scope.booking = {"productType":"hotel","id":"93612","img":"http:\/\/aff.bstatic.com\/images\/hotel\/max500\/346\/34690282.jpg","name":"The St. Regis Mardavall Mallorca Resort","description":"This exquisite resort nestles between the Tramuntana Mountains and the glistening Mediterranean Sea \u2013 the perfect place to enjoy a luxury stay on this beautiful Balearic island.\n\nThe exclusive offering of the St. Regis Mardavall Mallorca Resort includes personal butler service and canopy beds beside the outdoor swimming pool. You can also enjoy a round on the seafront golf course.\n\nThe elegant, dazzling white interior features facilities ranging from an indoor pool to a gourmet restaurant. Throughout the building you can admire the best of modern Majorcan art.\n\nEach of the hotel\u2019s luxurious rooms opens onto a spacious balcony offering views of the lush gardens.","price":"530.00","currency":"EUR","checkindate":"2016-10-10","checkoutdate":"2016-10-11","latitude":"39.52839076214566","longitude":"2.550952434539795"};
 		$scope.selectedEvent;
 		$scope.init = function(){
 			 
@@ -19,7 +20,13 @@ AppModel
 				});
 
 				if(event.length > 0){
-					$scope.selectedEvent = event[0];
+					$scope.selectedEvent =parseMock(event[0]);
+
+					$scope.getBookingAvailability(
+						$scope.selectedEvent.eventLatitud,
+						$scope.selectedEvent.eventLongitud,
+						$scope.selectedEvent.startDate,
+						addDate($scope.selectedEvent.startDate));
 				}
 				
 			}, 
@@ -28,12 +35,44 @@ AppModel
 			});
 		}; 
 
+		var addDate = function(da){
+			var someDate = new Date(da);
+			var numberOfDaysToAdd = 2;
+			someDate.setDate(someDate.getDate() + numberOfDaysToAdd);
+
+			
+			var dd = someDate.getDate();
+			var mm = someDate.getMonth() + 1;
+			var y = someDate.getFullYear();
+
+			if((""+mm).length == 1)
+				mm = "0" + mm;
+
+			if(("" + dd).length == 1)
+				dd = "0" + dd;
+
+			var someFormattedDate = y + "-" + mm + "-" + dd;
+			return someFormattedDate;
+		}
+		 
+
+		var parseMock = function(item){
+			return {img: "https://images.sk-static.com/images/media/profile_images/venues/" + item.venue.id + "/col2", 
+				startDate: item.start.date,
+				cityName : item.location.city,
+				cityLatitud : item.location.lat,
+				cityLongitud: item.location.lng,
+				id: item.id,
+				eventName : item.displayName,
+				eventLatitud: item.venue.lat,
+				eventLongitud : item.venue.lng}
+		}
 		$scope.init();
 
 		// Get Booking Availability
 		$scope.getBookingAvailability = function(latitud, longitud, checkInDate, checkOutDate){
 			
-			var url = "../api/api.php";
+			var url = "api/api.php";
 			var data = {
 				action: "getAvailability",
 				partner: "booking",
@@ -44,19 +83,19 @@ AppModel
 					lat: latitud,
 					radius: 5
 				}
-			}
+			};
 
 			$http
-				.post(url, rq)
+				.post(url, data)
 				.then(onGetBookingAvailabilitySuccess, onGetBookingAvailabilityError);
 		};
 
 		var onGetBookingAvailabilitySuccess = function(response){
-			//Todo: 
+			$scope.booking = response;
 		};
 
 		var onGetBookingAvailabilityError = function(response){
-			//Todo:
+			console.log(response);
 		}
 
 		// Get Booking Hotel Information

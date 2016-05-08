@@ -7,7 +7,7 @@ require_once("function.php");
 
 
 
-/*
+
 	$booking = new Booking("hacker232", "fthriQ0ZWfs");
 	$rq = new AvailabilityRequest();
 	$rq->CheckInDate = "2016-10-10";
@@ -16,7 +16,7 @@ require_once("function.php");
 	$rq->Lon = "2.65007";
 	$rq->Radius = 10;
 	echo $booking->GetAvailability($rq);
-*/
+
 
 Class Booking{
    
@@ -56,8 +56,7 @@ Class Booking{
 	    $product->checkindate = $RQ->CheckInDate;
 	    $product->checkoutdate = $RQ->CheckOutDate;
 	    $product->latitude = $hotelInformation[0]->location->latitude;
-	    $product->longitude = $hotelInformation[0]->location->longitude;
-	    
+	    $product->longitude = $hotelInformation[0]->location->longitude;	    
 	    return json_encode($product);
 
 	} 
@@ -84,10 +83,10 @@ Class Booking{
 	// Get Hotel Images;
 	function GetHotelImage($listOfHotels){
 		$serviceUrl = "https://distribution-xml.booking.com/json/bookings.getHotelDescriptionPhotos";
-		$data = "hotel_ids=" . (is_array($listOfHotels) ? implode(",", $listOfHotels) : $listOfHotels);
-
+		$data = "hotel_ids=" . $listOfHotels; 
 		$bookinRequest =  $serviceUrl."?".$data;
 		return $this->api->CallAPI("POST", $bookinRequest);
+
 	}
 
 
