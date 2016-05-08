@@ -6,32 +6,29 @@ var AppModel = angular
 AppModel
 	.controller('confirmCtrl', ['$scope', '$http', '$location', function($scope, $http, $location){
 				
+
+		$scope.selectedEvent;
 		$scope.init = function(){
-			console.log();
+			 
 			var eventId = getQueryString().eventid;
-			$scope.getSelectedEvent(eventId);
-		};
-
-		$scope.init();
-
-		$scope.getSelectedEvent = function(eventId){
 			//todo: remove this from here ok? :)
 			$http.get("mock/searchArtist.json").then(
 			function(response){
 				var event = response.data.resultsPage.results.event.filter(function(item){
-					return item.id === eventId;
+					return item.id == eventId;
 				});
 
-				if(selectedEvent.length > 0){
-					var selectedEvent = event[0];
+				if(event.length > 0){
+					$scope.selectedEvent = event[0];
 				}
 				
 			}, 
 			function(response){
 
 			});
-	
-		};
+		}; 
+
+		$scope.init();
 
 		// Get Booking Availability
 		$scope.getBookingAvailability = function(latitud, longitud, checkInDate, checkOutDate){
