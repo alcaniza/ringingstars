@@ -8,6 +8,13 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once("function.php");
  
+
+$rome = new RomeToRio("sqruI6jx");
+$request = new AvailabilityRequest();
+$request->Lat = "38.76988,-9.12824";
+$request->Lon = "40.49109,-3.59369";
+$rome->GetAvailability($request);
+
 Class RomeToRio{
    
 	var $api = null;
@@ -26,10 +33,8 @@ Class RomeToRio{
 			"&oPos=". $RQ->Lat .
 			"&dPos=" . $RQ->Lon; 
 
-		$request =  file_get_contents($serviceUrl."?".$data);
-		return $request;
+		return file_get_contents($serviceUrl."?".$data);
 	} 
- 
 
  
 }
