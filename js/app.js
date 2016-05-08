@@ -4,11 +4,12 @@ var AppModel = angular
 	.module('ringstar', []);
  
 AppModel
-	.controller('confirmCtrl', ['$scope', '$http', '$location', function($scope, $http, $location){
+	.controller('confirmCtrl', ['$scope', '$http', '$location','$timeout', function($scope, $http, $location, $timeout){
 			
 
 		$scope.booking = {"productType":"hotel","id":"93612","img":"http:\/\/aff.bstatic.com\/images\/hotel\/max500\/346\/34690282.jpg","name":"The St. Regis Mardavall Mallorca Resort","description":"This exquisite resort nestles between the Tramuntana Mountains and the glistening Mediterranean Sea \u2013 the perfect place to enjoy a luxury stay on this beautiful Balearic island.\n\nThe exclusive offering of the St. Regis Mardavall Mallorca Resort includes personal butler service and canopy beds beside the outdoor swimming pool. You can also enjoy a round on the seafront golf course.\n\nThe elegant, dazzling white interior features facilities ranging from an indoor pool to a gourmet restaurant. Throughout the building you can admire the best of modern Majorcan art.\n\nEach of the hotel\u2019s luxurious rooms opens onto a spacious balcony offering views of the lush gardens.","price":"530.00","currency":"EUR","checkindate":"2016-10-10","checkoutdate":"2016-10-11","latitude":"39.52839076214566","longitude":"2.550952434539795"};
 		$scope.selectedEvent;
+		$scope.transfer =  {"productType":"transfer","id":null,"img":0,"name":"Fly","description":[{"name":"Lisbon","pos":"38.76988,-9.12824","kind":"airport","code":"LIS","countryCode":"PT","timeZone":"Europe\/Lisbon"},{"name":"Madrid","pos":"40.49109,-3.59369","kind":"airport","code":"MAD","countryCode":"ES","timeZone":"Europe\/Madrid"}],"price":45,"currency":"USD","checkindate":0,"checkoutdate":0,"latitude":0,"longitude":0}; 	
 		$scope.init = function(){
 			 
 			var eventId = getQueryString().eventid;
@@ -20,13 +21,23 @@ AppModel
 				});
 
 				if(event.length > 0){
-					$scope.selectedEvent =parseMock(event[0]);
+					$timeout(function(){
+						
+						$scope.selectedEvent =parseMock(event[0]);
 
-					$scope.getBookingAvailability(
-						$scope.selectedEvent.eventLatitud,
-						$scope.selectedEvent.eventLongitud,
-						$scope.selectedEvent.startDate,
-						addDate($scope.selectedEvent.startDate));
+						$scope.getTransfer();
+
+						$scope.getBookingAvailability(
+							$scope.selectedEvent.eventLatitud,
+							$scope.selectedEvent.eventLongitud,
+							$scope.selectedEvent.startDate,
+							addDate($scope.selectedEvent.startDate));
+
+					});
+					
+					
+					
+
 				}
 				
 			}, 
@@ -55,6 +66,8 @@ AppModel
 			return someFormattedDate;
 		}
 		 
+ 
+
 
 		var parseMock = function(item){
 			return {img: "https://images.sk-static.com/images/media/profile_images/venues/" + item.venue.id + "/col2", 
@@ -67,6 +80,7 @@ AppModel
 				eventLatitud: item.venue.lat,
 				eventLongitud : item.venue.lng}
 		}
+
 		$scope.init();
 
 		// Get Booking Availability
@@ -121,6 +135,34 @@ AppModel
 
 		var onGetBookingHotelError = function(response){
 			//Todo:
+		}
+
+		$scope.getTransfer = function(){
+			var oLocation = $scope.booking.lat + "," + $scope.booking.lon;
+			var dLocation = $scope.selectedEvent.eventLatitud + "," + $scope.selectedEvent.eventLongitud;
+			var url = "api/api.php";
+			var data = {
+				action: "getAvailability",
+				partner: "rome2rio",
+				data: {
+					checkInDate: null,
+					checkOutDate: null,
+					lon: oLocation,
+					lat: dLocation,
+					radius: 5
+				}
+			};
+
+			$http
+				.post(url, data)
+				.then(
+				function(response){
+console.log("OK", response);
+				}, 
+				function(response){
+console.log("KO", response);
+				});
+			
 		}
 
 	}])
